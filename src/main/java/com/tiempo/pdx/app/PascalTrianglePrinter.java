@@ -2,6 +2,9 @@ package com.tiempo.pdx.app;
 
 import com.tiempo.pdx.util.Console;
 
+import java.util.Iterator;
+import java.util.List;
+
 public class PascalTrianglePrinter {
     private static final String BLANK_SPACE = " ";
     private static final String SLASH = "/";
@@ -15,48 +18,84 @@ public class PascalTrianglePrinter {
     void print(PascalTriangle pascalTriangle) {
         int level = pascalTriangle.getLevel();
         int initialSpacesLength = 2 * level - 2;
+        int x = level - 2;
 
         printFirstLine(initialSpacesLength);
 
+        Iterator<List<Integer>> iterator = pascalTriangle.iterator();
+        iterator.next();
+        List<Integer> lista = null;
+
+
         if (level == 2) {
-            initialSpacesLength = printConnectorLine(level, initialSpacesLength);
-            console.printLine("1" + repeatSpace(level + 1) + "1");
+            printMaster(level, iterator, x--, --initialSpacesLength, --initialSpacesLength - 1);
         }
 
         if (level == 3) {
-            initialSpacesLength = printConnectorLine(level - 1, initialSpacesLength);
-            console.printLine(repeatSpace(--initialSpacesLength) + "1" + repeatSpace(3) + "1");
-            initialSpacesLength = printConnectorLine(level, initialSpacesLength);
-            console.printLine(repeatSpace(--initialSpacesLength) + "1" + repeatSpace(3) + "2" + repeatSpace(3) + "1");
+            printMaster(level, iterator, x--, --initialSpacesLength, --initialSpacesLength);
+
+            lista = iterator.next();
+            printConnectorLine(level - x--, --initialSpacesLength);
+            printDataLine(lista, --initialSpacesLength);
 
         }
 
         if (level == 4) {
-            initialSpacesLength = printConnectorLine(level - 2, initialSpacesLength);
-            console.printLine(repeatSpace(--initialSpacesLength) + "1" + repeatSpace(3) + "1");
-            initialSpacesLength = printConnectorLine(level - 1, initialSpacesLength);
-            console.printLine(repeatSpace(--initialSpacesLength) + "1" + repeatSpace(3) + "2" + repeatSpace(3) + "1");
-            initialSpacesLength = printConnectorLine(level, initialSpacesLength);
-            console.printLine(repeatSpace(--initialSpacesLength) + "1" + repeatSpace(3) + "3" + repeatSpace(3) + "3" + repeatSpace(3) + "1");
+            lista = iterator.next();
+            printConnectorLine(level - x--, --initialSpacesLength);
+            printDataLine(lista, --initialSpacesLength);
+
+            lista = iterator.next();
+            printConnectorLine(level - x--, --initialSpacesLength);
+            printDataLine(lista, --initialSpacesLength);
+
+            lista = iterator.next();
+            printConnectorLine(level - x--, --initialSpacesLength);
+            printDataLine(lista, --initialSpacesLength);
 
         }
 
         if (level == 5) {
-            initialSpacesLength = printConnectorLine(level - 3, initialSpacesLength);
-            console.printLine(repeatSpace(--initialSpacesLength) + "1" + repeatSpace(3) + "1");
-            initialSpacesLength = printConnectorLine(level - 2, initialSpacesLength);
-            console.printLine(repeatSpace(--initialSpacesLength) + "1" + repeatSpace(3) + "2" + repeatSpace(3) + "1");
-            initialSpacesLength = printConnectorLine(level - 1, initialSpacesLength);
-            console.printLine(repeatSpace(--initialSpacesLength) + "1" + repeatSpace(3) + "3" + repeatSpace(3) + "3" + repeatSpace(3) + "1");
-            initialSpacesLength = printConnectorLine(level, initialSpacesLength);
-            console.printLine(repeatSpace(--initialSpacesLength) + "1" + repeatSpace(3) + "4" + repeatSpace(3) + "6" + repeatSpace(3) + "4" + repeatSpace(3) + "1");
+            lista = iterator.next();
+            printConnectorLine(level - x--, --initialSpacesLength);
+            printDataLine(lista, --initialSpacesLength);
+
+            lista = iterator.next();
+            printConnectorLine(level - x--, --initialSpacesLength);
+            printDataLine(lista, --initialSpacesLength);
+
+            lista = iterator.next();
+            printConnectorLine(level - x--, --initialSpacesLength);
+            printDataLine(lista, --initialSpacesLength);
+
+            printMaster(level, iterator, x--, --initialSpacesLength, --initialSpacesLength);
 
         }
     }
 
-    private int printConnectorLine(int level, int initialSpacesLength) {
-        console.printLine(repeatSpace(--initialSpacesLength) + conectores(level));
-        return initialSpacesLength;
+    private void printMaster(int level, Iterator<List<Integer>> iterator, int y, int z, int w) {
+        List<Integer> lista;
+        lista = iterator.next();
+        printConnectorLine(level - y, z);
+        printDataLine(lista, w);
+    }
+
+    private void printDataLine(List<Integer> lista, int times) {
+        console.printLine(repeatSpace(times) + lineaDatos(lista));
+    }
+
+    private String lineaDatos(List<Integer> lista) {
+        String linea = "";
+        for (Integer numero : lista) {
+            linea += numero + repeatSpace(3);
+        }
+        String substring = linea.substring(0, linea.length() - 3);
+        System.out.println("Substring is " + substring + ".");
+        return substring;
+    }
+
+    private void printConnectorLine(int level, int initialSpacesLength) {
+        console.printLine(repeatSpace(initialSpacesLength) + conectores(level));
     }
 
     private void printFirstLine(int initialSpacesLength) {
