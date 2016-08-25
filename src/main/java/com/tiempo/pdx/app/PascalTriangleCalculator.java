@@ -17,7 +17,7 @@ public class PascalTriangleCalculator {
             List<Integer> currentLevelList = new ArrayList<Integer>(currentLevel);
 
             for (int currentListElementCount = 0; currentListElementCount < currentLevel; currentListElementCount++) {
-                currentLevelList.add(sumConsecutives(previousLevel, currentListElementCount - 1));
+                currentLevelList.add(calculateElement(previousLevel, currentListElementCount - 1));
             }
 
             pascalTriangle.addLevel(currentLevelList);
@@ -28,7 +28,7 @@ public class PascalTriangleCalculator {
         return pascalTriangle;
     }
 
-    private Integer sumConsecutives(Integer[] integer, int startIndex) {
+    private Integer calculateElement(Integer[] integer, int startIndex) {
         Integer firstNumber = startIndex < 0 ? 0 : integer[startIndex];
         int consecutive = startIndex + 1;
 

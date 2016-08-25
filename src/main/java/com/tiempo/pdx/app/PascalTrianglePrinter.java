@@ -24,8 +24,6 @@ public class PascalTrianglePrinter {
 
         Iterator<List<Integer>> iterator = pascalTriangle.iterator();
         iterator.next();
-        List<Integer> lista = null;
-
 
         if (level == 2) {
             printMaster(level, iterator, x--, --initialSpacesLength, --initialSpacesLength - 1);
@@ -38,41 +36,37 @@ public class PascalTrianglePrinter {
     }
 
     private void printMaster(int level, Iterator<List<Integer>> iterator, int y, int z, int w) {
-        List<Integer> lista;
-        lista = iterator.next();
         printConnectorLine(level - y, z);
-        printDataLine(lista, w);
+        printDataLine(iterator.next(), w);
     }
 
-    private void printDataLine(List<Integer> lista, int times) {
-        console.printLine(repeatSpace(times) + lineaDatos(lista));
+    private void printDataLine(List<Integer> currentLine, int times) {
+        console.printLine(repeatSpace(times) + formatLine(currentLine));
     }
 
-    private String lineaDatos(List<Integer> lista) {
-        String linea = "";
-        int totalDigitos = 0;
-        for (Integer numero : lista) {
-            totalDigitos = numero.toString().length();
-            linea += numero + repeatSpace(totalDigitos == 1 ? 3: totalDigitos == 2 ? 2 : 1);
+    private String formatLine(List<Integer> data) {
+        String line = "";
+        for (Integer number : data) {
+            int digitCount = number.toString().length();
+            line += number + repeatSpace(digitCount == 1 ? 3: digitCount == 2 ? 2 : 1);
         }
-        String substring = linea.substring(0, linea.length() - 3);
-        return substring;
+        return line.substring(0, line.length() - 3);
     }
 
     private void printConnectorLine(int level, int initialSpacesLength) {
-        console.printLine(repeatSpace(initialSpacesLength) + conectores(level));
+        console.printLine(repeatSpace(initialSpacesLength) + connectorsLineFor(level));
     }
 
     private void printFirstLine(int initialSpacesLength) {
         console.printLine(repeatSpace(initialSpacesLength) + "1");
     }
 
-    private String conectores(int level) {
-        String conector = patron() + BLANK_SPACE;
+    private String connectorsLineFor(int level) {
+        String currentLine = patron() + BLANK_SPACE;
         for (int i = 1; i < level - 1; i++) {
-            conector += patron() + BLANK_SPACE;
+            currentLine += patron() + BLANK_SPACE;
         }
-        return conector.substring(0, conector.length() - 1);
+        return currentLine.substring(0, currentLine.length() - 1);
     }
 
     private String patron() {
