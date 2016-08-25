@@ -31,9 +31,9 @@ public class PascalTrianglePrinter {
 
             int spaces = numberOfSpacesFor(position);
 
-            if (level > 1)
-                printConnectorLine(currentLevel, spaces);
             printDataLine(list, spaces - 1);
+            if (level > 1 && currentLevel < level)
+                printConnectorLine(currentLevel, spaces - 2);
         }
     }
 
@@ -56,7 +56,7 @@ public class PascalTrianglePrinter {
 
     private String connectorsLineFor(int level) {
         String currentLine = lineConnector() + BLANK_SPACE;
-        for (int i = 1; i < level - 1; i++) {
+        for (int i = 0; i < level - 1; i++) {
             currentLine += lineConnector() + BLANK_SPACE;
         }
         return currentLine.substring(0, currentLine.length() - 1);
@@ -77,6 +77,6 @@ public class PascalTrianglePrinter {
     }
 
     private int numberOfSpacesFor(int level) {
-        return 2 * level - 1;
+        return level > 1 ? 2 * level - 1 : 0;
     }
 }
