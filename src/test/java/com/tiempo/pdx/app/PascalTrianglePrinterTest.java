@@ -17,17 +17,18 @@ public class PascalTrianglePrinterTest {
 
     @Mock
     private Console console;
-    @SuppressWarnings("WeakerAccess")
-    PascalTrianglePrinter printer;
+
+    private PascalTrianglePrinter printer;
+    private PascalTriangle pascalTriangle;
 
     @Before
     public void setUp() throws Exception {
         printer = new PascalTrianglePrinter(console);
+        pascalTriangle = new PascalTriangle();
     }
 
     @Test
     public void should_print_a_pascal_triangle() throws Exception {
-        PascalTriangle pascalTriangle = new PascalTriangle();
         pascalTriangle.addLevel(singletonList(1));
         printer.print(pascalTriangle);
         InOrder inOrder = inOrder(console);
@@ -36,7 +37,6 @@ public class PascalTrianglePrinterTest {
 
     @Test
     public void should_print_a_pascal_triangle_2() throws Exception {
-        PascalTriangle pascalTriangle = new PascalTriangle();
         pascalTriangle.addLevel(singletonList(1));
         pascalTriangle.addLevel(asList(1, 1));
         printer.print(pascalTriangle);
@@ -48,7 +48,6 @@ public class PascalTrianglePrinterTest {
 
     @Test
     public void should_print_a_pascal_triangle_3() throws Exception {
-        PascalTriangle pascalTriangle = new PascalTriangle();
         pascalTriangle.addLevel(singletonList(1));
         pascalTriangle.addLevel(asList(1, 1));
         pascalTriangle.addLevel(asList(1, 2, 1));
@@ -63,7 +62,6 @@ public class PascalTrianglePrinterTest {
 
     @Test
     public void should_print_a_pascal_triangle_4() throws Exception {
-        PascalTriangle pascalTriangle = new PascalTriangle();
         pascalTriangle.addLevel(singletonList(1));
         pascalTriangle.addLevel(asList(1, 1));
         pascalTriangle.addLevel(asList(1, 2, 1));
@@ -81,7 +79,6 @@ public class PascalTrianglePrinterTest {
 
     @Test
     public void should_print_a_pascal_triangle_5() throws Exception {
-        PascalTriangle pascalTriangle = new PascalTriangle();
         pascalTriangle.addLevel(singletonList(1));
         pascalTriangle.addLevel(asList(1, 1));
         pascalTriangle.addLevel(asList(1, 2, 1));
