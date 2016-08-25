@@ -12,7 +12,9 @@ public class PascalTriangleIteratorTest {
 
     @Test
     public void should_return_true_when_triangle_has_next() throws Exception {
-        PascalTriangleIterator iterator = new PascalTriangleIterator(new PascalTriangle(1));
+        PascalTriangle triangle = new PascalTriangle();
+        triangle.addLevel(singletonList(1));
+        PascalTriangleIterator iterator = new PascalTriangleIterator(triangle);
         assertThat(iterator.hasNext(), is(true));
         iterator.next();
         assertThat(iterator.hasNext(), is(false));
@@ -20,7 +22,7 @@ public class PascalTriangleIteratorTest {
 
     @Test
     public void should_obtain_next_list_of_integers_from_pascal_triangle() throws Exception {
-        PascalTriangle triangle = new PascalTriangle(3);
+        PascalTriangle triangle = new PascalTriangle();
 
         triangle.addLevel(singletonList(1));
         triangle.addLevel(asList(1, 1));

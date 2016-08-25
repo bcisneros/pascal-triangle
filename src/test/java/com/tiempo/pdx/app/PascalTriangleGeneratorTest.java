@@ -20,7 +20,7 @@ public class PascalTriangleGeneratorTest {
     @Test
     public void should_calculate_and_format_expected_pascal_triangle() throws Exception {
         PascalTriangleGenerator generator = new PascalTriangleGenerator(pascalTriangleCalculator, pascalTrianglePrinter);
-        PascalTriangle pascalTriangle = new PascalTriangle(7);
+        PascalTriangle pascalTriangle = new PascalTriangle();
         when(pascalTriangleCalculator.calculate(7)).thenReturn(pascalTriangle);
 
         generator.generate(7);

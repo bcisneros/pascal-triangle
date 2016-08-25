@@ -8,7 +8,7 @@ import static java.util.Collections.singletonList;
 
 public class PascalTriangleCalculator {
     PascalTriangle calculate(int level) {
-        PascalTriangle pascalTriangle = new PascalTriangle(level);
+        PascalTriangle pascalTriangle = new PascalTriangle();
 
         List<Integer> level1 = singletonList(1);
         Integer[] previousLevel = new Integer[]{1};

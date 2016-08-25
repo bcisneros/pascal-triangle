@@ -3,6 +3,7 @@ package com.tiempo.pdx.app;
 import com.tiempo.pdx.util.Console;
 
 
+@SuppressWarnings("WeakerAccess")
 public class PascalTriangleGeneratorApp {
     public static void main(String[] args) {
         PascalTriangleCalculator calculator = new PascalTriangleCalculator();

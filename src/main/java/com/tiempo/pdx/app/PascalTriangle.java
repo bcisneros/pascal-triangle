@@ -5,12 +5,10 @@ import java.util.Iterator;
 import java.util.List;
 
 class PascalTriangle {
-    private final int level;
     private final List<List<Integer>> levels;
 
-    PascalTriangle(int level) {
-        this.level = level;
-        levels = new ArrayList<List<Integer>>(level);
+    PascalTriangle() {
+        levels = new ArrayList<List<Integer>>();
     }
 
     Iterator<List<Integer>> iterator() {
@@ -18,7 +16,7 @@ class PascalTriangle {
     }
 
     int getLevel() {
-        return level;
+        return levels.size();
     }
 
     void addLevel(List<Integer> level) {

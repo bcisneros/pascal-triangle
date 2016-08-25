@@ -1,6 +1,7 @@
 package com.tiempo.pdx.app;
 
 import com.tiempo.pdx.util.Console;
+import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.mockito.InOrder;
@@ -13,13 +14,20 @@ import static org.mockito.Mockito.inOrder;
 
 @RunWith(MockitoJUnitRunner.class)
 public class PascalTrianglePrinterTest {
+
     @Mock
     private Console console;
+    @SuppressWarnings("WeakerAccess")
+    PascalTrianglePrinter printer;
+
+    @Before
+    public void setUp() throws Exception {
+        printer = new PascalTrianglePrinter(console);
+    }
 
     @Test
     public void should_print_a_pascal_triangle() throws Exception {
-        PascalTrianglePrinter printer = new PascalTrianglePrinter(console);
-        PascalTriangle pascalTriangle = new PascalTriangle(1);
+        PascalTriangle pascalTriangle = new PascalTriangle();
         pascalTriangle.addLevel(singletonList(1));
         printer.print(pascalTriangle);
         InOrder inOrder = inOrder(console);
@@ -28,8 +36,7 @@ public class PascalTrianglePrinterTest {
 
     @Test
     public void should_print_a_pascal_triangle_2() throws Exception {
-        PascalTrianglePrinter printer = new PascalTrianglePrinter(console);
-        PascalTriangle pascalTriangle = new PascalTriangle(2);
+        PascalTriangle pascalTriangle = new PascalTriangle();
         pascalTriangle.addLevel(singletonList(1));
         pascalTriangle.addLevel(asList(1, 1));
         printer.print(pascalTriangle);
@@ -41,8 +48,7 @@ public class PascalTrianglePrinterTest {
 
     @Test
     public void should_print_a_pascal_triangle_3() throws Exception {
-        PascalTrianglePrinter printer = new PascalTrianglePrinter(console);
-        PascalTriangle pascalTriangle = new PascalTriangle(3);
+        PascalTriangle pascalTriangle = new PascalTriangle();
         pascalTriangle.addLevel(singletonList(1));
         pascalTriangle.addLevel(asList(1, 1));
         pascalTriangle.addLevel(asList(1, 2, 1));
@@ -57,8 +63,7 @@ public class PascalTrianglePrinterTest {
 
     @Test
     public void should_print_a_pascal_triangle_4() throws Exception {
-        PascalTrianglePrinter printer = new PascalTrianglePrinter(console);
-        PascalTriangle pascalTriangle = new PascalTriangle(4);
+        PascalTriangle pascalTriangle = new PascalTriangle();
         pascalTriangle.addLevel(singletonList(1));
         pascalTriangle.addLevel(asList(1, 1));
         pascalTriangle.addLevel(asList(1, 2, 1));
@@ -76,8 +81,7 @@ public class PascalTrianglePrinterTest {
 
     @Test
     public void should_print_a_pascal_triangle_5() throws Exception {
-        PascalTrianglePrinter printer = new PascalTrianglePrinter(console);
-        PascalTriangle pascalTriangle = new PascalTriangle(5);
+        PascalTriangle pascalTriangle = new PascalTriangle();
         pascalTriangle.addLevel(singletonList(1));
         pascalTriangle.addLevel(asList(1, 1));
         pascalTriangle.addLevel(asList(1, 2, 1));
