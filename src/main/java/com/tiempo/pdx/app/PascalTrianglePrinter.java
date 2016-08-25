@@ -31,46 +31,10 @@ public class PascalTrianglePrinter {
             printMaster(level, iterator, x--, --initialSpacesLength, --initialSpacesLength - 1);
         }
 
-        if (level == 3) {
-            printMaster(level, iterator, x--, --initialSpacesLength, --initialSpacesLength);
-
-            lista = iterator.next();
-            printConnectorLine(level - x--, --initialSpacesLength);
-            printDataLine(lista, --initialSpacesLength);
-
-        }
-
-        if (level == 4) {
-            lista = iterator.next();
-            printConnectorLine(level - x--, --initialSpacesLength);
-            printDataLine(lista, --initialSpacesLength);
-
-            lista = iterator.next();
-            printConnectorLine(level - x--, --initialSpacesLength);
-            printDataLine(lista, --initialSpacesLength);
-
-            lista = iterator.next();
-            printConnectorLine(level - x--, --initialSpacesLength);
-            printDataLine(lista, --initialSpacesLength);
-
-        }
-
-        if (level == 5) {
-            lista = iterator.next();
-            printConnectorLine(level - x--, --initialSpacesLength);
-            printDataLine(lista, --initialSpacesLength);
-
-            lista = iterator.next();
-            printConnectorLine(level - x--, --initialSpacesLength);
-            printDataLine(lista, --initialSpacesLength);
-
-            lista = iterator.next();
-            printConnectorLine(level - x--, --initialSpacesLength);
-            printDataLine(lista, --initialSpacesLength);
-
-            printMaster(level, iterator, x--, --initialSpacesLength, --initialSpacesLength);
-
-        }
+        if (level > 2)
+            for (int currentLevel = 1; currentLevel < level; currentLevel++) {
+                printMaster(level, iterator, x--, --initialSpacesLength, --initialSpacesLength);
+            }
     }
 
     private void printMaster(int level, Iterator<List<Integer>> iterator, int y, int z, int w) {
@@ -86,11 +50,12 @@ public class PascalTrianglePrinter {
 
     private String lineaDatos(List<Integer> lista) {
         String linea = "";
+        int totalDigitos = 0;
         for (Integer numero : lista) {
-            linea += numero + repeatSpace(3);
+            totalDigitos = numero.toString().length();
+            linea += numero + repeatSpace(totalDigitos == 1 ? 3: totalDigitos == 2 ? 2 : 1);
         }
         String substring = linea.substring(0, linea.length() - 3);
-        System.out.println("Substring is " + substring + ".");
         return substring;
     }
 
