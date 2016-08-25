@@ -12,30 +12,26 @@ public class PascalTrianglePrinter {
     private static final int LEVEL_START = 2;
     private final Console console;
 
+
     public PascalTrianglePrinter(Console console) {
         this.console = console;
     }
 
     void print(PascalTriangle pascalTriangle) {
         int level = pascalTriangle.getLevel();
-        int numberOfSpacesAtTheBeginningOfLine = LEVEL_START * level - LEVEL_START;
-        int x = level - LEVEL_START;
         Iterator<List<Integer>> iterator = pascalTriangle.iterator();
-        console.printLine(repeatSpace(numberOfSpacesAtTheBeginningOfLine) + iterator.next().get(0));
-        if (level == LEVEL_START) {
-            printLevel(level - 0, iterator, --numberOfSpacesAtTheBeginningOfLine, --numberOfSpacesAtTheBeginningOfLine - 1);
+        for (int currentLevel = 1; currentLevel <= level; currentLevel++) {
+            printLevel(iterator.next(), level);
         }
-
-        if (level > LEVEL_START)
-            for (int currentLevel = 1; currentLevel < level; currentLevel++) {
-                int extracted = x--;
-                printLevel(level - extracted, iterator, --numberOfSpacesAtTheBeginningOfLine, --numberOfSpacesAtTheBeginningOfLine - 0);
-            }
     }
 
-    private void printLevel(int level, Iterator<List<Integer>> iterator, int initialSpacesLength, int numberOfSpacesAtTheBegin) {
-        printConnectorLine(level, initialSpacesLength);
-        printDataLine(iterator.next(), numberOfSpacesAtTheBegin);
+    private void printLevel(List<Integer> list, int realLevel) {
+        int currentLevel = list.size();
+        int position = getPosition(realLevel - currentLevel);
+
+        if (realLevel > 1)
+            printConnectorLine(currentLevel, position);
+        printDataLine(list, position - 1);
     }
 
     private void printDataLine(List<Integer> currentLine, int numberOfSpacesAtTheBegin) {
@@ -56,22 +52,36 @@ public class PascalTrianglePrinter {
     }
 
     private String connectorsLineFor(int level) {
-        String currentLine = patron() + BLANK_SPACE;
+        String currentLine = lineConnector() + BLANK_SPACE;
         for (int i = 1; i < level - 1; i++) {
-            currentLine += patron() + BLANK_SPACE;
+            currentLine += lineConnector() + BLANK_SPACE;
         }
         return currentLine.substring(0, currentLine.length() - 1);
     }
 
-    private String patron() {
+    private String lineConnector() {
         return SLASH + BLANK_SPACE + BACK_SLASH;
     }
 
     private String repeatSpace(int times) {
         String repeated = "";
+        if (times < 1)
+            return "";
         for (int i = 1; i <= times; i++) {
             repeated += BLANK_SPACE;
         }
         return repeated;
+    }
+
+    protected int getPosition(int index) {
+
+//        if (index < 0)
+//            return 0;
+//        if (index == 0)
+//            return 1;
+//
+//        return index + 2;
+        int array[] = {1, 3, 5, 7, 9, 11, 13, 15, 17};
+        return array[index];
     }
 }
