@@ -13,7 +13,7 @@ import static org.junit.Assert.assertThat;
 
 public class PascalTriangleCalculatorTest {
 
-    private PascalTriangleCalculator pascalCalculator = new PascalTriangleCalculator();
+    private final PascalTriangleCalculator pascalCalculator = new PascalTriangleCalculator();
 
     @Test
     public void should_calculate_pascal_triangle_given_a_level_number() throws Exception {

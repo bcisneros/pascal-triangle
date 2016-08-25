@@ -5,8 +5,8 @@ import java.util.Iterator;
 import java.util.List;
 
 class PascalTriangle {
-    private int level;
-    private List<List<Integer>> levels;
+    private final int level;
+    private final List<List<Integer>> levels;
 
     PascalTriangle(int level) {
         this.level = level;

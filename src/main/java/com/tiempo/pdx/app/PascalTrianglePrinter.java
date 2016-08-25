@@ -9,7 +9,7 @@ public class PascalTrianglePrinter {
     private static final String BLANK_SPACE = " ";
     private static final String SLASH = "/";
     private static final String BACK_SLASH = "\\";
-    private Console console;
+    private final Console console;
 
     public PascalTrianglePrinter(Console console) {
         this.console = console;

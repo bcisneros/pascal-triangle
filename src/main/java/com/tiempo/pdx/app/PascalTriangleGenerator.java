@@ -2,8 +2,8 @@ package com.tiempo.pdx.app;
 
 
 public class PascalTriangleGenerator {
-    private PascalTriangleCalculator pascalTriangleCalculator;
-    private PascalTrianglePrinter pascalTrianglePrinter;
+    private final PascalTriangleCalculator pascalTriangleCalculator;
+    private final PascalTrianglePrinter pascalTrianglePrinter;
 
     public PascalTriangleGenerator(PascalTriangleCalculator pascalTriangleCalculator, PascalTrianglePrinter pascalTrianglePrinter) {
         this.pascalTriangleCalculator = pascalTriangleCalculator;

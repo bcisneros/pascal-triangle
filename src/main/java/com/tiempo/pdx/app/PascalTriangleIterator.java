@@ -6,7 +6,7 @@ import java.util.List;
 class PascalTriangleIterator implements Iterator<List<Integer>> {
 
     private int cursor = 0;
-    private PascalTriangle pascalTriangle;
+    private final PascalTriangle pascalTriangle;
 
     PascalTriangleIterator(PascalTriangle pascalTriangle) {
         this.pascalTriangle = pascalTriangle;
