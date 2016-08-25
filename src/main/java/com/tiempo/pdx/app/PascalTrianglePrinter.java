@@ -18,20 +18,23 @@ public class PascalTrianglePrinter {
     }
 
     void print(PascalTriangle pascalTriangle) {
-        int level = pascalTriangle.getLevel();
-        Iterator<List<Integer>> iterator = pascalTriangle.iterator();
-        for (int currentLevel = 1; currentLevel <= level; currentLevel++) {
-            printLevel(iterator.next(), level);
-        }
+        printLevel(pascalTriangle);
     }
 
-    private void printLevel(List<Integer> list, int realLevel) {
-        int currentLevel = list.size();
-        int position = getPosition(realLevel - currentLevel);
+    private void printLevel(PascalTriangle pascalTriangle) {
+        Iterator<List<Integer>> iterator = pascalTriangle.iterator();
+        while (iterator.hasNext()) {
+            List<Integer> list = iterator.next();
+            int level = pascalTriangle.getLevel();
+            int currentLevel = list.size();
+            int position = level - currentLevel + 1;
 
-        if (realLevel > 1)
-            printConnectorLine(currentLevel, position);
-        printDataLine(list, position - 1);
+            int spaces = numberOfSpacesFor(position);
+
+            if (level > 1)
+                printConnectorLine(currentLevel, spaces);
+            printDataLine(list, spaces - 1);
+        }
     }
 
     private void printDataLine(List<Integer> currentLine, int numberOfSpacesAtTheBegin) {
@@ -73,8 +76,7 @@ public class PascalTrianglePrinter {
         return repeated;
     }
 
-    protected int getPosition(int index) {
-        int array[] = {1, 3, 5, 7, 9, 11, 13, 15, 17};
-        return array[index];
+    private int numberOfSpacesFor(int level) {
+        return 2 * level - 1;
     }
 }
