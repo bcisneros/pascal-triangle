@@ -74,13 +74,6 @@ public class PascalTrianglePrinter {
     }
 
     protected int getPosition(int index) {
-
-//        if (index < 0)
-//            return 0;
-//        if (index == 0)
-//            return 1;
-//
-//        return index + 2;
         int array[] = {1, 3, 5, 7, 9, 11, 13, 15, 17};
         return array[index];
     }
