@@ -16,6 +16,8 @@ import java.util.List;
 import static java.util.Arrays.asList;
 import static java.util.Collections.singletonList;
 import static org.mockito.Mockito.inOrder;
+import static org.mockito.Mockito.verify;
+import static org.mockito.Mockito.verifyNoMoreInteractions;
 import static org.mockito.MockitoAnnotations.initMocks;
 
 @RunWith(JUnitParamsRunner.class)
@@ -55,6 +57,7 @@ public class PascalTrianglePrinterTest {
         for (String line : lines) {
             inOrder.verify(console).printLine(line);
         }
+        verifyNoMoreInteractions(console);
     }
 
     @SuppressWarnings("unused")
