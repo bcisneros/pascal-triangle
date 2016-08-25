@@ -19,7 +19,9 @@ public class PascalTrianglePrinterTest {
     @Test
     public void should_print_a_pascal_triangle() throws Exception {
         PascalTrianglePrinter printer = new PascalTrianglePrinter(console);
-        printer.print(new PascalTriangle(1));
+        PascalTriangle pascalTriangle = new PascalTriangle(1);
+        pascalTriangle.addLevel(singletonList(1));
+        printer.print(pascalTriangle);
         InOrder inOrder = inOrder(console);
         inOrder.verify(console).printLine("1");
     }
