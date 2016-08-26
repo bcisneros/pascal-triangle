@@ -67,13 +67,9 @@ public class PascalTrianglePrinter {
     }
 
     private String repeatSpace(int times) {
-        String repeated = "";
-        if (times < 1)
+        if (times < 0)
             return "";
-        for (int i = 1; i <= times; i++) {
-            repeated += BLANK_SPACE;
-        }
-        return repeated;
+        return new String(new char[times]).replace("\0", BLANK_SPACE);
     }
 
     private int numberOfSpacesFor(int level) {
