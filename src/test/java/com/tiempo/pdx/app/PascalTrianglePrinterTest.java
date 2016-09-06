@@ -44,7 +44,7 @@ public class PascalTrianglePrinterTest {
 
     @Test
     @Parameters(method = "testData")
-    public void should_print_a_pascal_triangle_5(Collection<List<Integer>> triangleData, List<String> lines) throws Exception {
+    public void should_print_a_given_pascal_triangle(Collection<List<Integer>> triangleData, List<String> lines) throws Exception {
 
         for (List<Integer> dataLine : triangleData) {
             pascalTriangle.addLevel(dataLine);
